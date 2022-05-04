@@ -3,6 +3,7 @@ package ugsc.presentations;
 import io.smallrye.mutiny.Uni;
 import ugsc.presentations.model.Greeting;
 import ugsc.presentations.model.GreetingDTO;
+import ugsc.presentations.service.GreetingRepository;
 import ugsc.presentations.service.GreetingService;
 
 import javax.inject.Inject;
@@ -15,6 +16,9 @@ public class GreetingResource {
 
     @Inject
     GreetingService greetingService;
+
+    @Inject
+    GreetingRepository greetingRepository;
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
@@ -37,6 +41,12 @@ public class GreetingResource {
         return greetingService.getGreetings();
     }
 
+    @GET
+    @Path("find")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Greeting> findByUser(@QueryParam("user")String user){
+       return greetingRepository.findByUser(user);
+    }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

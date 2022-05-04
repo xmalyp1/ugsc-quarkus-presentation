@@ -1,5 +1,6 @@
 package ugsc.presentations.service;
 
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import io.quarkus.logging.Log;
 import io.quarkus.panache.common.Sort;
 import ugsc.presentations.model.Greeting;
@@ -10,7 +11,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @ApplicationScoped
-public class GreetingService {
+public class GreetingService{
 
     public List<Greeting> getGreetings(){
        Log.debug("Calling get all greeting");
