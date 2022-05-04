@@ -21,14 +21,6 @@ public class GreetingResource {
     public String hello() {
         return "Hello from RESTEasy Reactive";
     }
-/*
-    @GET
-    @Path("helloAsync")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Uni<String> getLatestGreetingAsync(){
-        return Uni.createFrom().item("Hello from async endpoint.");
-    }
-*/
 
     @GET
     @Path("latest")
