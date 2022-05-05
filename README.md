@@ -3,6 +3,30 @@
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+## Useful commands
+### Create project
+```shell script
+mvn io.quarkus.platform:quarkus-maven-plugin:2.8.2.Final:create -DprojectGroupId=ugsc.presentations -DprojectArtifactId=ugsc-quarkus-tes1 -Dextensions="resteasy-reactive","jdbc-h2","jdbc-mysql","hibernate-orm-panache","smallrye-openapi","resteasy-reactive-jsonb"
+```
+
+### Start MySQL Database
+```shell script
+docker run -p 3306:3306 --name=mysqltest -e MYSQL_ROOT_PASSWORD=Password -e MYSQL_DATABASE=test -d mysql
+```
+
+### Start project in container
+```shell script
+./mvnw package
+docker build -f src/main/docker/Dockerfile.jvm -t quarkus/ugsc-quarkus-jvm .
+docker run -i --rm -p 8080:8080 quarkus/ugsc-quarkus-jvm
+```
+
+### Start project in Native mode (OS Windows)
+```shell script
+native_executable.bat
+docker build -f src/main/docker/Dockerfile.native -t quarkus/ugsc-quarkus:native .
+docker run -i --rm -p 8080:8080 quarkus/ugsc-quarkus:native
+```
 
 ## Running the application in dev mode
 
